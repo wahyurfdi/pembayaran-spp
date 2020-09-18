@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>eSPP | Pengumuman</title>
+
+  <!-- CSS Vendor -->
+  <%- include('../partials/css') -%>
+
+</head>
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- SIDEBAR -->
+    <%- include('../partials/sidebar') -%>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- TOPBAR -->
+        <%- include('../partials/header') -%>
+        <!-- End of Topbar -->
+
+        <!-- CONTENT AREA -->
+        <div class="container-fluid">
+
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb shadow bg-white">
+              <li class="breadcrumb-item" aria-current="page"><a href="javascript:history.back();">Pengumuman</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Ubah Pengumuman</li>
+            </ol>
+          </nav>
+
+          <!-- ROW 1 -->
+          <div class="row">
+            <div class="col">
+              <div class="card shadow mb-5">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">FORMULIR PENGUMUMAN</h6>
+                </div>
+                <div class="card-body">
+                  <div class="row pl-5 pr-5">
+                    <div class="col">
+                      <form>
+                        <div class="form-group row">
+                          <div class="col">
+                            <div class="row">
+                              <div class="col-md-12 col-form-label text-muted">Judul</div>
+                              <div class="col-md-12">
+                                <input type="text" class="form-control" placeholder="Masukkan judul pengumuman">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col">
+                            <div class="row">
+                              <div class="col-md-12 col-form-label text-muted">File <small>(Hanya .pdf)</small></div>
+                              <div class="col-md-12">
+                                <input type="file" class="form-control-file">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col">
+                            <div class="row">
+                              <div class="col-md-12 col-form-label text-muted">Isi Pengumuman</div>
+                              <div class="col-md-12">
+                                <textarea class="form-control" placeholder="Masukkan isi pengumuman" rows="5"></textarea>
+                              </div>
+                            </div>
+                          </div>
+                        </div>  
+                        <div class="form-group row">
+                          <div class="col">
+                            <button class="btn btn-primary w-25 float-right mt-3">Ubah</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>              
+            </div>
+          </div>
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+        <%- include('../partials/footer') -%>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- LOGOUT MODAL-->
+  <%- include('../partials/logout-modal') -%>
+
+  <!-- JS VENDOR -->
+  <%- include('../partials/js') -%>
+
+  <!-- Custom JS -->
+  <script>
+  $(document).ready(function() {
+      $('#tabel-pengumuman').DataTable();
+      $('#inputSpp').select2({
+          placeholder: 'Pilih tahun ajaran'
+      });
+
+      $('#selectKelas').select2({
+        placeholder: 'Pilih kelas'
+      });
+  });
+  </script>
+
+</body>
+
+</html>

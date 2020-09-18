@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>eSPP | Transaksi</title>
+
+  <!-- CSS Vendor -->
+  <%- include('../partials/css') -%>
+
+</head>
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- SIDEBAR -->
+    <%- include('../partials/sidebar') -%>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- TOPBAR -->
+        <%- include('../partials/header') -%>
+        <!-- End of Topbar -->
+
+        <!-- CONTENT AREA -->
+        <div class="container-fluid">
+
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb shadow bg-white">
+              <li class="breadcrumb-item" aria-current="page"><a href="javascript:history.back()">Transaksi</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Buat Transaksi</li>
+            </ol>
+          </nav>
+
+          <!-- ROW 1 -->
+          <div class="row mb-4 mt-4">
+            <div class="col-xl-12 col-md-12">
+              <div class="card shadow mb-4 h-100">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">INFORMASI SPP</h6>
+                </div>
+                <div class="card-body pb-0">
+                  <input type="hidden" id="idSpp" value="<%= spp_siswa.id_spp %>">
+                  <div class="form-group row mb-0">
+                    <div class="col">
+                      <div class="row">
+                        <label class="col-md-12 col-form-label">Tahun ajaran</label>
+                        <div class="col-md-12">
+                          <input type="text" class="form-control" value="<%= spp_siswa.spp.tahun_ajaran %>" disabled>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="row">
+                        <label class="col-md-12 col-form-label">Nominal pertahun</label>
+                        <div class="col-md-12">
+                          <input type="text" class="form-control" value="Rp. <%= spp_siswa.spp.nominal %>" disabled>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="row">
+                        <label class="col-md-12 col-form-label">Nominal perbulan</label>
+                        <div class="col-md-12">
+                          <input type="text" class="form-control" value="Rp. <%= (spp_siswa.spp.nominal)/12 %>" disabled>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ROW 2 -->
+          <div class="row">
+            <div class="col">
+              <div class="card shadow mb-5">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">FORMULIR PEMBAYARAN SPP</h6>
+                </div>
+                <div class="card-body">
+                  <form class="row" id="formBayar">
+                    <div class="col-md-6 pr-5 pl-5">
+                      <div class="row">
+                        <div class="col">
+                          <h6 class="text-muted">Informasi Siswa</h6>
+                          <hr class="w-50 float-left mt-0">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-12 col-form-label">NISN</div>
+                        <div class="col-md-12">
+                          <input type="text" class="form-control" id="nisn" value="<%= siswa.nisn %>" disabled>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-12 col-form-label">NIS</div>
+                        <div class="col-md-12">
+                          <input type="text" class="form-control" value="<%= siswa.nis %>" disabled>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-12 col-form-label">Nama</div>
+                        <div class="col-md-12">
+                          <input type="text" class="form-control" value="<%= siswa.nama %>" disabled>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-12 col-form-label">Email</div>
+                        <div class="col-md-12">
+                          <input type="text" class="form-control" value="<%= siswa.email %>" disabled>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6 pr-5 pl-5">
+                      <div class="row">
+                        <div class="col">
+                          <h6 class="text-muted">Informasi Pembayaran</h6>
+                          <hr class="w-50 float-left mt-0">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-12 col-form-label">Petugas</div>
+                        <div class="col-md-12">
+                          <input type="hidden" id="idPetugas" value="<%= akun.id_petugas %>">
+                          <input type="text" class="form-control" value="<%= akun.nama_petugas %>" disabled>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-12 col-form-label">Tanggal transaksi</div>
+                        <div class="col-md-12">
+                          <input type="date" class="form-control" id="tglBayar" required>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-12 col-form-label">Periode pembayaran</div>
+                        <div class="col-md-12">
+                          <select class="form-control" id="selectPeriode" onchange="hitungJumlah()" required>
+                            <option></option>
+                            <% for(var i=0;i<spp_siswa.sisa_periode;i++) { %>
+                              <option value="<%= (i+1) %>"><%= (i+1) %> Bulan</option>
+                            <% } %>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-12 col-form-label">Jumlah pembayaran <small>(Rp)</small></div>
+                        <div class="col-md-12">
+                          <input type="text" class="form-control" id="jumlahBayar" placeholder="0" disabled>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col">
+                          <button type="submit" class="btn btn-primary w-25 float-right mt-3">Simpan</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+        <%- include('../partials/footer') -%>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- LOGOUT MODAL-->
+  <%- include('../partials/logout-modal') -%>
+
+  <!-- JS VENDOR -->
+  <%- include('../partials/js') -%>
+
+  <!-- Custom JS -->
+  <script>
+
+  var sppSiswa = JSON.parse('<%- JSON.stringify(spp_siswa) %>')
+
+  $(document).ready(function(){
+    $('#selectPeriode').select2({
+      placeholder: 'Pilih pembayaran periode'
+    });
+  });
+
+  function hitungJumlah(){
+    var nominalTahun = sppSiswa.spp.nominal;
+    var nominalBulan = nominalTahun/12;
+    var periode = $('#selectPeriode').val();
+    var labelJumlah = periode*nominalBulan;
+
+    $('#jumlahBayar').val(labelJumlah);
+  }
+
+  $('#formBayar').submit(function(){
+    var data = {
+      petugas: $('#idPetugas').val(),
+      id_spp: $('#idSpp').val(),
+      nisn: $('#nisn').val(),
+      tgl_bayar: $('#tglBayar').val(),
+      periode_pembayaran: $('#selectPeriode').val(),
+      jumlah_bayar: $('#jumlahBayar').val()
+    }
+
+    $.ajax({
+      type: 'POST',
+      url: '/spp/pembayaran',
+      contentType: 'application/json',
+      data: JSON.stringify(data),
+      success: function(res) {
+        if(res != true){
+          return swalEddor();
+        }
+
+        swalSuccess('post', 'transaksi');
+      }
+    });
+
+    return false;
+  })
+
+  </script>
+
+</body>
+
+</html>

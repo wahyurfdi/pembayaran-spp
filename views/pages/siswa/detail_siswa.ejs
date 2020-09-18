@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>eSPP | Siswa</title>
+
+  <!-- CSS Vendor -->
+  <%- include('../partials/css') -%>
+
+</head>
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- SIDEBAR -->
+    <%- include('../partials/sidebar') -%>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- TOPBAR -->
+        <%- include('../partials/header') -%>
+        <!-- End of Topbar -->
+
+        <!-- CONTENT AREA -->
+        <div class="container-fluid">
+
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb shadow bg-white">
+              <li class="breadcrumb-item"><a href="javascript:history.back()">Siswa</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Detail Siswa</li>
+            </ol>
+          </nav>
+
+          <!-- ROW 1 -->
+          <div class="row">
+            <div class="col">
+              <div class="card shadow mb-5">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">INFORMASI SISWA</h6>
+                </div>
+                <div class="card-body">
+                  <form id="formEditSiswa">
+                    <div class="row">
+                      <div class="col pl-5 pr-5">
+                        <div class="row mb-2">
+                          <div class="col">
+                            <h6 class="text-dark">Data Siswa</h6>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-3 col-form-label text-muted">NISN</div>
+                          <div class="col-md-9">
+                            <input type="text" class="form-control" id="nisn" value="<%= siswa.nisn %>" readonly>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-3 col-form-label text-muted">NIS</div>
+                          <div class="col-md-9">
+                            <input type="text" class="form-control" id="nis" placeholder="Masukkan NIS" value="<%= siswa.nis %>">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-3 col-form-label text-muted">Nama</div>
+                          <div class="col-md-9">
+                            <input type="text" class="form-control" id="nama" placeholder="Masukkan nama lengkap" value="<%= siswa.nama %>">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-3 col-form-label text-muted">Kelas</div>
+                          <div class="col-md-9">
+                            <select class="form-control" id="selectKelas">
+                              <option></option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-3 col-form-label text-muted">Status</div>
+                          <div class="col-md-9">
+                            <select class="form-control" id="status">
+                              <option></option>
+                              <option value="true" <% if(siswa.active == true) { %> selected <% } %>>Aktif</option>
+                              <option value="false" <% if(siswa.active == false) { %> selected <% } %>>Non Aktif</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col pl-5 pr-5">
+                          <div class="row mb-2">
+                            <div class="col">
+                              <h6 class="text-dark">Data Kontak</h6>  
+                            </div>
+                          </div>
+                        <div class="form-group row">
+                          <div class="col-md-3 col-form-label text-muted">Telepon</div>
+                          <div class="col-md-9">
+                            <input type="number" class="form-control" id="telp" placeholder="Nomor telepon aktif" value="<%= siswa.no_telp %>">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-3 col-form-label text-muted">Email</div>
+                          <div class="col-md-9">
+                            <input type="email" class="form-control" id="email" placeholder="Masukkan email valid" value="<%= siswa.email %>">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-3 col-form-label text-muted">Alamat</div>
+                          <div class="col-md-9">
+                            <textarea class="form-control" id="alamat" rows="4" placeholder="Masukkan alamat lengkap"><%= siswa.alamat %></textarea>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col">
+                            <button type="submit" class="btn btn-primary w-25 float-right mt-4">Ubah</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>              
+            </div>
+          </div>
+
+          <!-- ROW 2 -->
+          <div class="row">
+            <div class="col">
+                <div class="card shadow mb-5">
+                  <div class="card-header py-3">
+                    <div class="row">
+                      <div class="col">
+                        <h6 class="font-weight-bold text-primary mt-1">TAGIHAN SPP <small>/TAHUN AJARAN</small></h6>
+                      </div>
+                      <div class="col">
+                        <button type="button" data-toggle="modal" data-target="#modalTambahSpp" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm float-right"><i class="fas fa-plus fa-sm text-white"></i> Tambah Tagihan</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                      <table id="tabel-siswa" class="table table-striped table-striped" style="width:100%">
+                          <thead>
+                            <tr>
+                              <th>No</th>
+                              <th>Tahun Ajaran</th>
+                              <th>Nominal Pertahun</th>
+                              <th>Sisa Periode</th>
+                              <th>Status</th>
+                              <th>Aksi</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <% for(var i=0;i<siswa.spps.length;i++){ %>
+                              <tr>
+                                <td><%= (i+1) %></td>
+                                <td><%= siswa.spps[i].tahun_ajaran %></td>
+                                <td><%= siswa.spps[i].nominal %></td>
+                                <td><%= siswa.spps[i].siswaSPP.sisa_periode %> Bulan</td>
+                                <td>
+                                  <% if(siswa.spps[i].siswaSPP.active == true) { %>
+                                    <span class="badge badge-success" style="width: 70px">Aktif</span>
+                                  <% } else { %>
+                                    <span class="badge badge-danger" style="width: 70px">Non Aktif</span>
+                                  <% } %>
+                                </td>
+                                <td>
+                                  <% if(siswa.spps[i].siswaSPP.active == true) { %>
+                                    <a href="" title="non aktif" class="ml-2 text-danger" onclick="editStatus('<%= siswa.spps[i].siswaSPP.id_siswaSPP %>', 'false');return false;"><i class="fa fa-ban"></i></a>
+                                  <% } else { %>
+                                    <a href="" title="aktif" class="ml-2 text-success" onclick="editStatus('<%= siswa.spps[i].siswaSPP.id_siswaSPP %>', 'true');return false;"><i class="far fa-check-circle"></i></a>
+                                  <% } %>
+                                </td>
+                              </tr>
+                            <% } %>
+                          </tbody>
+                          <tfoot>
+                            <tr>
+                              <th>No</th>
+                              <th>Tahun Ajaran</th>
+                              <th>Nominal Pertahun</th>
+                              <th>Sisa Periode</th>
+                              <th>Status</th>
+                              <th>Aksi</th>
+                            </tr>
+                          </tfoot>
+                      </table>
+                  </div>
+                </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+        <%- include('../partials/footer') -%>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- LOGOUT MODAL-->
+  <%- include('../partials/logout-modal') -%>
+
+  <!-- Modal Tambah Tagihan -->
+  <div class="modal fade" id="modalTambahSpp" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h6 class="modal-title"><i class="fa fa-plus"></i> TAMBAH TAGIHAN SPP</h6>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form id="formTambahSpp">
+        <div class="modal-body">
+          <div class="form-group row">
+            <div class="col-md-12 col-form-label">Tahun Ajaran</div>
+            <div class="col-md-12">
+              <select class="form-control" id="inputSpp" style="width: 100% !important;" multiple>
+                <option></option>
+              </select>
+              <small class="form-text text-muted">Bisa dipilih lebih dari 1 tahun ajaran</small>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+          <button type="submit" class="btn btn-primary">Simpan</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS VENDOR -->
+  <%- include('../partials/js') -%>
+
+  <!-- Custom JS -->
+  <script>
+  var siswa = JSON.parse('<%- JSON.stringify(siswa) %>');  
+  console.log(siswa)
+  $(document).ready(function() {  
+    $('#tabel-siswa').DataTable();
+    $('#selectKelas').select2({
+      placeholder: 'Pilih kelas'
+    });
+    $('#inputSpp').select2({
+      placeholder: 'Pilih tahun ajaran'
+    });
+
+    getKelas(siswa.id_kelas);
+    setSiswaSpp();
+  });
+
+  //GET SPP SISWA
+  function setSiswaSpp(){
+    var temp = [];
+    
+    for(var i = 0;i<(siswa.spps).length;i++){
+      temp.push(siswa.spps[i].id_spp)
+    }
+    
+    getSpp(true, temp);
+  }
+
+  //EDIT DATA SISWA
+  $('#formEditSiswa').submit(function(){
+    var nisn = $('#nisn').val();
+    var data = {
+      nis: $('#nis').val(),
+      nama: $('#nama').val(),
+      kelas: $('#selectKelas').val(),
+      status: $('#status').val(),
+      telepon: $('#telp').val(),
+      email: $('#email').val(),
+      alamat: $('#alamat').val()
+    };
+
+    $.ajax({
+      type: 'PUT',
+      url: '/spp/siswa/'+nisn,
+      contentType: 'application/json',
+      data: JSON.stringify(data),
+      success: function(res) {
+        if(res == false){
+          return swalError();
+        }
+
+        swalSuccess('put', 'siswa');
+      }
+    });
+
+    return false;
+  })
+
+  //TAMBAH SPP SISWA
+  $('#formTambahSpp').submit(function(){
+    var data = {
+      nisn: siswa.nisn,
+      spp: $('#inputSpp').val()
+    }
+    
+    $.ajax({
+      type: 'POST',
+      url: '/spp/siswaspp',
+      contentType: 'application/json',
+      data: JSON.stringify(data),
+      success: function(res){
+        if(res != true){
+          return swalError();
+        }
+
+        swalSuccess('post', 'spp siswa');
+      }
+    });
+
+    return false;
+  });
+
+  //EDIT STATUS SPP SISWA
+  function editStatus(id, status){
+    var data = {
+      status: status
+    }
+    
+    $.ajax({
+      type: 'PUT',
+      url: '/spp/siswaspp/'+id,
+      contentType: 'application/json',
+      data: JSON.stringify(data),
+      success: function(res) {
+        if(res != true){
+          return swalError();
+        }
+
+        swalSuccess('put', 'spp siswa');
+      }
+    })
+  }
+
+  </script>
+
+</body>
+
+</html>

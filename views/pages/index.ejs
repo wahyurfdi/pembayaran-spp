@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>eSPP | Pembayaran SPP Elektronik</title>
+
+  <!-- CSS INCLUDE -->
+  <%- include('partials/css') %> 
+
+</head>
+
+<body class="bg-white">
+
+  <div class="container">
+
+    <!-- Outer Row -->
+    <div class="row justify-content-center mt-5">
+
+      <div class="col-xl-10 col-lg-12 col-md-9 mt-5">
+
+        <div class="card o-hidden border-0 shadow-lg">
+          <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+              <div class="col-lg-6 bg-primary p-5 text-center text-white">
+                <img src="/img/banner.png" class="w-50 mt-5 mb-3" id="banner">
+                <h4>Aplikasi eSPP <br><small>(Pendataan SPP Berbasis Aplikasi)</small></h4>
+              </div>
+              <div class="col-lg-6">
+                <div class="p-5">
+                  <div class="text-center">
+                    <img src="/img/tutwuri_logo.png" style="width: 30%">
+                    <h1 class="h4 text-gray-900 mt-2">Selamat Datang!</h1>
+                    <p class="text-muted mb-4">Silahkan masuk untuk melanjutkan aktivitas Anda</p>
+                  </div>
+                  <form class="user" id="formLogin">
+                    <div class="form-group">
+                      <input type="text" class="form-control form-control-user" id="inputUsername" placeholder="Masukkan Username" required>
+                    </div>
+                    <div class="form-group">
+                      <input type="password" class="form-control form-control-user" id="inputPassword" placeholder="Masukkan Password" required>
+                    </div>
+                    <div class="custom-control custom-checkbox mr-sm-2">
+                      <input type="checkbox" class="custom-control-input" id="customControlAutosizing" onchange="showPassword(this)">
+                      <label class="custom-control-label text-muted" for="customControlAutosizing">Tampilkan password</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-user btn-block mt-4">Masuk</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS INCLUDE -->
+  <%- include('partials/js') %> 
+
+  <script>
+
+  $(document).ready(function(){
+    document.cookie = "akun=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/spp;";
+  });
+
+  //AJAX LOGIN
+  $('#formLogin').submit(function(){
+    var data = {
+      username: $('#inputUsername').val(),
+      password: $('#inputPassword').val()
+    };
+
+    $.ajax({
+      type: 'POST',
+      url: '/spp/login',
+      contentType: 'application/json',
+      data: JSON.stringify(data),
+      success: function(res){
+
+        if(res.login == false){
+          return swal('Gagal Login!', 'Username atau Password salah!', 'error');
+        }
+
+        document.cookie = "akun=" + res.akun;
+        
+        window.location = '/spp/pages/beranda';
+
+      }
+    });
+
+    return false;
+  })
+
+  //SHOW PASSWORD
+  function showPassword(checkbox){
+    if(checkbox.checked){
+      $('#inputPassword').prop('type', 'text');
+    } else{
+      $('#inputPassword').prop('type', 'password');
+    }
+  }
+
+  </script>
+
+</body>
+
+</html>

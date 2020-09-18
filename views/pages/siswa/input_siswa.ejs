@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>eSPP | Siswa</title>
+
+  <!-- CSS Vendor -->
+  <%- include('../partials/css') -%>
+
+</head>
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- SIDEBAR -->
+    <%- include('../partials/sidebar') -%>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- TOPBAR -->
+        <%- include('../partials/header') -%>
+        <!-- End of Topbar -->
+
+        <!-- CONTENT AREA -->
+        <div class="container-fluid">
+
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb shadow bg-white">
+              <li class="breadcrumb-item active" aria-current="page">Siswa /</li>
+            </ol>
+          </nav>
+
+          <!-- ROW 1 -->
+          <div class="row">
+            <div class="col-md-5">
+              <div class="card shadow mb-5">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">FORMULIR SISWA</h6>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <div class="row mb-2">
+                        <div class="col">
+                          <h6 class="text-dark">Data Siswa</h6>
+                        </div>
+                      </div>
+                      <form id="formSiswa">
+                        <div class="form-group row">
+                          <div class="col-md-3 col-form-label text-muted">NISN</div>
+                          <div class="col-md-9">
+                            <input type="text" class="form-control" id="nisn" placeholder="Masukkan NISN" required>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-3 col-form-label text-muted">NIS</div>
+                          <div class="col-md-9">
+                            <input type="text" class="form-control" id="nis" placeholder="Masukkan NIS" required>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-3 col-form-label text-muted">Nama</div>
+                          <div class="col-md-9">
+                            <input type="text" class="form-control" id="nama" placeholder="Masukkan Nama Lengkap" required>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-3 col-form-label text-muted">Kelas</div>
+                          <div class="col-md-9">
+                            <select class="form-control" id="selectKelas" required>
+                              <option></option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-3 col-form-label text-muted">Telepon</div>
+                          <div class="col-md-9">
+                            <input type="number" class="form-control" id="telp" placeholder="Nomor telepon aktif" required>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-3 col-form-label text-muted">Email</div>
+                          <div class="col-md-9">
+                            <input type="email" class="form-control" id="email" placeholder="Masukkan email valid" required>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-3 col-form-label text-muted">Alamat</div>
+                          <div class="col-md-9">
+                            <textarea class="form-control" id="alamat" rows="3" placeholder="Masukkan alamat lengkap" required></textarea>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col">
+                            <hr class="w-100 float-left mt-0">
+                          </div>
+                        </div>
+                        <div class="row mb-2">
+                          <div class="col">
+                            <h6 class="text-dark">Tagihan SPP</h6>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-3 col-form-label text-muted">Tahun</div>
+                          <div class="col-md-9">
+                            <select class="form-control" multiple="multiple" id="inputSpp" required>
+                              <option></option>
+                            </select>
+                            <small class="form-text text-muted">Bisa dipilih lebih dari 1 tahun ajaran</small>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col">
+                            <button type="submit" class="btn btn-primary w-25 float-right mt-3">Simpan</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>              
+            </div>
+            <div class="col">
+              <div class="card shadow mb-5">
+                <div class="card-header py-3">
+                  <div class="row">
+                    <div class="col">
+                      <h6 class="m-0 font-weight-bold text-primary">DAFTAR SISWA</h6>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <table id="tabelSiswa" class="table table-striped table-striped" style="width:100%">
+                    <thead>
+                      <tr>
+                        <th>No</th>
+                        <th>NISN</th>
+                        <th width="150px">Nama</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- ON JS -->
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <th>No</th>
+                        <th>NISN</th>
+                        <th>Nama</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+        <%- include('../partials/footer') -%>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- LOGOUT MODAL-->
+  <%- include('../partials/logout-modal') -%>
+
+  <!-- JS VENDOR -->
+  <%- include('../partials/js') -%>
+
+  <!-- Custom JS -->
+  <script>
+
+  $(document).ready(function() {
+      $('#inputSpp').select2({
+          placeholder: 'Pilih tahun ajaran'
+      });
+      $('#selectKelas').select2({
+        placeholder: 'Pilih kelas'
+      });
+
+      getSpp(false);
+      getKelas();
+      getSiswa();
+  });
+
+  //GET SISWA
+  function getSiswa(){
+    $.ajax({
+      type: 'GET',
+      url: '/spp/siswa',
+      contentType: 'application/json',
+      success: function(res){
+        var tabel = $('#tabelSiswa tbody');
+        tabel.html('');
+
+        (JSON.parse(res)).forEach((siswa, i) => {
+          i++;
+
+          tabel.append(`
+          <tr>
+            <td>`+i+`</td>
+            <td>`+siswa.nisn+`</td>
+            <td>`+siswa.nama+`</td>
+            <td>`+labelStatus(siswa.active)+`</td>
+            <td>
+              <a href="/spp/pages/siswa/`+siswa.nisn+`" title="detail" class="ml-2"><i class="fa fa-eye"></i></a>
+            </td>
+          </tr>
+          `);
+        });
+
+        $('#tabelSiswa').DataTable();
+      }
+    });
+  }
+
+  //FORM TAMBAH SISWA
+  $('#formSiswa').submit(function() {
+    var data = {
+      nisn: $('#nisn').val(),
+      nis: $('#nis').val(),
+      nama: $('#nama').val(),
+      kelas: $('#selectKelas').val(),
+      telepon: $('#telp').val(),
+      email: $('#email').val(),
+      alamat: $('#alamat').val(),
+      spp: $('#inputSpp').val(), 
+    }
+
+    $.ajax({
+      type: 'POST',
+      url: '/spp/siswa',
+      contentType: 'application/json',
+      data: JSON.stringify(data),
+      success: function(res){
+        if(res == false){
+          return swalError();
+        }
+
+        swalSuccess('post', 'siswa');
+      }
+    });
+
+    return false;
+  });
+
+  </script>
+
+</body>
+
+</html>

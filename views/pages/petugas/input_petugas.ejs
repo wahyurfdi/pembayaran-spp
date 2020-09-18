@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>eSPP | Petugas</title>
+
+  <!-- CSS Vendor -->
+  <%- include('../partials/css') -%>
+
+</head>
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- SIDEBAR -->
+    <%- include('../partials/sidebar') -%>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- TOPBAR -->
+        <%- include('../partials/header') -%>
+        <!-- End of Topbar -->
+
+        <!-- CONTENT AREA -->
+        <div class="container-fluid">
+
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb shadow bg-white">
+              <li class="breadcrumb-item active" aria-current="page">Petugas /</li>
+            </ol>
+          </nav>
+
+          <!-- ROW 1 -->
+          <div class="row">
+            <div class="col-md-5">
+              <div class="card shadow mb-5">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">FORMULIR PETUGAS</h6>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <form id="formTambah">
+                        <div class="form-group row">
+                          <div class="col-md-3 col-form-label text-muted">Nama</div>
+                          <div class="col-md-9">
+                            <input type="text" class="form-control" id="tambahNama" placeholder="Masukkan Nama Lengkap" required>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-3 col-form-label text-muted">Username</div>
+                          <div class="col-md-9">
+                            <input type="text" class="form-control" id="tambahUsername" placeholder="Masukkan Username" required>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-3 col-form-label text-muted">Password</div>
+                          <div class="col-md-9">
+                            <div class="input-group mb-2">
+                              <input type="password" class="form-control" placeholder="Masukkan Password" id="inputPassword" required>
+                              <div class="input-group-prepend">
+                                <button class="input-group-text" id="showHidePassword">
+                                  <i class="fa fa-eye" id="iconPassword"></i>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-3 col-form-label text-muted">Role</div>
+                          <div class="col-md-9">
+                            <select class="form-control" id="tambahRole" required>
+                              <option></option>
+                              <option value="admin">Admin</option>
+                              <option value="petugas">Petugas</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col">
+                            <button type="submit" class="btn btn-primary w-25 float-right mt-3">Simpan</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>              
+            </div>
+            <div class="col">
+                <div class="card shadow mb-5">
+                  <div class="card-header py-3">
+                    <div class="row">
+                      <div class="col">
+                        <h6 class="m-0 font-weight-bold text-primary">DAFTAR PETUGAS</h6>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                      <table id="tabelPetugas" class="table table-striped table-striped" style="width:100%">
+                          <thead>
+                            <tr>
+                              <th>No</th>
+                              <th>Nama</th>
+                              <th>Role</th>
+                              <th>Status</th>
+                              <th>Aksi</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <!-- ON JS -->
+                          </tbody>
+                          <tfoot>
+                            <tr>
+                              <th>No</th>
+                              <th>Nama</th>
+                              <th>Role</th>
+                              <th>Status</th>
+                              <th>Aksi</th>
+                            </tr>
+                          </tfoot>
+                      </table>
+                  </div>
+                </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+        <%- include('../partials/footer') -%>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- LOGOUT MODAL-->
+  <%- include('../partials/logout-modal') -%>
+
+  <!-- LOGOUT EDIT -->
+  <div class="modal fade" id="modalEditPetugas" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <form id="formEditPetugas">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle"><i class="fa fa-edit"></i> EDIT PETUGAS</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <input type="hidden" id="idPetugas">
+            <div class="form-group row">
+              <div class="col-md-3 col-form-label text-muted">Nama</div>
+              <div class="col-md-9">
+                <input type="text" class="form-control" id="editNama" placeholder="Masukkan Nama Lengkap">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-md-3 col-form-label text-muted">Username</div>
+              <div class="col-md-9">
+                <input type="text" class="form-control" id="editUsername" placeholder="Masukkan Username">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-md-3 col-form-label text-muted">Password</div>
+              <div class="col-md-9">
+                <div class="input-group mb-2">
+                  <input type="password" class="form-control" placeholder="Masukkan Password" id="inputPasswordModal">
+                  <div class="input-group-prepend">
+                    <button class="input-group-text" id="showHidePasswordModal">
+                      <i class="fa fa-eye" id="iconPasswordModal"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-md-3 col-form-label text-muted">Role</div>
+              <div class="col-md-9">
+                <select class="form-control" id="editRole">
+                  <option value="admin">Admin</option>
+                  <option value="petugas">Petugas</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-md-3 col-form-label text-muted">Status</div>
+              <div class="col-md-9">
+                <select class="form-control" id="editStatus">
+                  <option value="true">Aktif</option> 
+                  <option value="false">Non Aktif</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+            <button type="submit" class="btn btn-primary">Ubah</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS VENDOR -->
+  <%- include('../partials/js') -%>
+
+  <!-- Custom JS -->
+  <script>
+    
+  $(document).ready(function() {
+      $('#tabelPetugasNonAktif').DataTable();
+      $('#tambahRole').select2({
+        placeholder: 'Pilih role akun'
+      });
+
+      getPetugas();
+  });
+
+  //GET DATA PETUGAS TO TABLE
+  function getPetugas(){
+    $.ajax({
+      type: 'GET',
+      url: '/spp/petugas',
+      contentType: 'application/json',
+      success: function(res){
+        var tabel = $('#tabelPetugas tbody');
+        tabel.html('');
+
+        res.forEach((petugas, i) => {
+          i++;
+
+          tabel.append(`
+          <tr>
+            <td>`+i+`</td>
+            <td>`+petugas.nama_petugas+`</td>
+            <td>`+petugas.roles+`</td>
+            <td>`+labelStatus(petugas.active)+`</td>
+            <td>
+              <a href="#" title="detail" class="mr-1" data-toggle="modal" data-target="#modalEditPetugas" onclick="getEdit('`+petugas.id_petugas+`', '`+petugas.nama_petugas+`', '`+petugas.username+`', '`+petugas.password+`', '`+petugas.roles+`', '`+petugas.active+`')"><i class="fa fa-edit"></i></a>
+              <a href="#" title="hapus" class="mr-1 text-danger" onclick="confirmDelete('`+petugas.id_petugas+`')"><i class="fa fa-trash"></i></a>
+            </td>
+          </tr>
+          `);
+        });
+
+        $('#tabelPetugas').DataTable();
+      }
+    });
+  }
+
+  //ADD DATA PETUGAS
+  $('#formTambah').submit(function(){
+    var data = {
+      nama: $('#tambahNama').val(),
+      username: $('#tambahUsername').val(),
+      password: $('#inputPassword').val(),
+      role: $('#tambahRole').val(),
+      active: true
+    }
+
+    $.ajax({
+      type: 'POST',
+      url: '/spp/petugas',
+      contentType: 'application/json',
+      data: JSON.stringify(data),
+      success: function(res){
+        if(res == false){
+          swalError();
+        }
+
+        swalSuccess('post', 'petugas');
+      }
+    });
+
+    return false;
+  })
+
+  //EDIT DATA PETUGAS
+  $('#formEditPetugas').submit(function(){
+    var idPetugas = $('#idPetugas').val();
+    var data = {
+      nama: $('#editNama').val(),
+      username: $('#editUsername').val(),
+      password: $('#inputPasswordModal').val(),
+      role: $('#editRole').val(),
+      status: $('#editStatus').val()
+    };
+
+    $.ajax({
+      type: 'PUT',
+      url: '/spp/petugas/'+idPetugas,
+      contentType: 'application/json',
+      data: JSON.stringify(data),
+      success: function(res){
+        if(res == false){
+          swalError();
+        }
+
+        swalSuccess('put', 'petugas');
+      }
+    });
+
+    return false
+  });
+
+  //GET VALUE TO EDIT MODAL
+  function getEdit(idPetugas, nama, username, password, role, status){
+
+    $('#idPetugas').val(idPetugas);
+    $('#editNama').val(nama);
+    $('#editUsername').val(username);
+    $('#inputPasswordModal').val(password);
+    $('#editRole').val(role);
+    $('#editStatus').val(status);
+
+  }
+  
+  //DELETE PETUGAS
+  function confirmDelete(idPetugas){
+    swal({
+      title: "Apakah Anda Yakin?",
+      text: "Mungkin akan berpengaruh terhadap data lainnya",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        $.ajax({
+          type: 'DELETE',
+          url: '/spp/petugas/'+idPetugas,
+          contentType: 'application/json',
+          success: function(res){
+            if(res != true){
+              return swalError();
+            }
+
+            swalSuccess('delete', 'petugas');
+
+          }
+        });
+      } else {
+        swal("Data ini tetap tersimpan!");
+      }
+    });
+  }
+
+  </script>
+
+</body>
+
+</html>
